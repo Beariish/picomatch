@@ -603,10 +603,11 @@ static int match(pm_Regex* expr, int pc, const char* source, int len, int* offse
                     }
                     set_idx += 3;
                 } else if (set_op == ARG_CLASS) {
-                    if (matches_class(source, *(op + 2 + set_idx + 1), 0)) {
+                    if (matches_class(source + (*offset), *(op + 2 + set_idx + 1), 0)) {
                         result = !result;
                         break;
                     }
+                    set_idx++;
                 } else {
                     if (current == set_op) {
                         result = !result;
